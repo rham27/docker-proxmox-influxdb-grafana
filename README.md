@@ -1,4 +1,4 @@
-# dockprom
+# rham27
 
 A monitoring solution for Docker hosts and containers with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
 [NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).
@@ -8,9 +8,8 @@ A monitoring solution for Docker hosts and containers with [Prometheus](https://
 Clone this repository on your Docker host, cd into dockprom directory and run compose up:
 
 ```bash
-git clone https://github.com/stefanprodan/dockprom
-cd dockprom
-
+git clone https://github.com/rham27/docker-proxmox-influxdb-grafana
+cd rham-master
 ADMIN_USER='admin' ADMIN_PASSWORD='admin' ADMIN_PASSWORD_HASH='$2a$14$1l.IozJx7xQRVmlkEQ32OeEEfP5mRxTpbDTCTcXRqn19gXD8YK1pO' docker-compose up -d
 ```
 
