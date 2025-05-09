@@ -1,0 +1,41 @@
+
+services:
+
+  grafana:
+    image: grafana/grafana:11.5.1
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
+  influxdb:
+    image: influxdb:2
+    container_name: influxdb
+    volumes:
+      - influxdb-config:/etc/influxdb2
+      - influxdb-data:/var/lib/influxdb2
+    ports:
+      - 8086:8086
+    networks:
+      - monitor-net
+
+volumes:
+  grafana_data:
+  influxdb-config:
+  influxdb-data:
+
+networks:
+  monitor-net:
+    driver: bridge
